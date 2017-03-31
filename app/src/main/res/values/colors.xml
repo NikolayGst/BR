@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#009688</color>
+  <color name="colorPrimaryDark">#00796B</color>
+  <color name="colorAccent">#FF5722</color>
+
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#757575</color>
+  <color name="white">#FFFFFF</color>
+  <color name="selected_text_tab">#dcdcdc</color>
+  <color name="unselected_text_tab">#ffffff</color>
+  <color name="divider">#BDBDBD</color>
+  <color name="grey">#e1e1e1</color>
+
+  <color name="mb">#408ab7</color>
+  <color name="mbDark">#316889</color>
+  <color name="banks">#d84315</color>
+  <color name="banksDark">#ac3611</color>
+  <color name="nbu">#fbc02d</color>
+  <color name="nbuDark">#c69721</color>
+  <color name="btc">#1bbe44</color>
+  <color name="btcDark">#189e39</color>
+  <color name="author">#8d29c7</color>
+  <color name="authorDark">#671c93</color>
+
+</resources>

@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_selected="true" android:color="@color/selected_text_tab" />
+  <item android:state_focused="true" android:color="@color/selected_text_tab" />
+  <item android:state_pressed="true" android:color="@color/selected_text_tab" />
+  <item android:color="@color/unselected_text_tab" />
+</selector>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+    android:id="@+id/MbAndBM"
+    android:title="ЧР и МБ"
+    android:icon="@drawable/megbank_and_black_market"
+    />
+
+  <item
+    android:id="@+id/banks"
+    android:title="Банки"
+    android:icon="@drawable/banks"
+    />
+
+  <item
+    android:id="@+id/nbu"
+    android:title="НБУ"
+    android:icon="@drawable/gerb"
+    />
+
+  <item
+    android:id="@+id/btc"
+    android:title="Биткоин"
+    android:icon="@mipmap/btc"
+    />
+
+  <item
+    android:id="@+id/author"
+    android:title="Об авторе"
+    android:icon="@drawable/ic_author"
+    />
+
+
+</menu>
