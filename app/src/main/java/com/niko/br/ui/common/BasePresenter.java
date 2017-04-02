@@ -5,7 +5,7 @@ import com.arellomobile.mvp.MvpView;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public class BasePresenter<T extends MvpView> extends MvpPresenter<T> {
+public abstract class BasePresenter<T extends MvpView> extends MvpPresenter<T> {
 
   private CompositeSubscription compositeSubscription;
 
@@ -16,6 +16,8 @@ public class BasePresenter<T extends MvpView> extends MvpPresenter<T> {
   public void unsubscribeOnDestroy(Subscription subscription) {
     compositeSubscription.add(subscription);
   }
+
+  public abstract void execute();
 
   @Override
   public void onDestroy() {

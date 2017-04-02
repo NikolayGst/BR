@@ -9,17 +9,19 @@
   <color name="white">#FFFFFF</color>
   <color name="selected_text_tab">#dcdcdc</color>
   <color name="unselected_text_tab">#ffffff</color>
-  <color name="divider">#BDBDBD</color>
-  <color name="grey">#e1e1e1</color>
+  <color name="bg">#BDBDBD</color>
+  <color name="grey">#ededed</color>
 
-  <color name="mb">#408ab7</color>
-  <color name="mbDark">#316889</color>
-  <color name="banks">#d84315</color>
-  <color name="banksDark">#ac3611</color>
-  <color name="nbu">#fbc02d</color>
-  <color name="nbuDark">#c69721</color>
-  <color name="btc">#1bbe44</color>
-  <color name="btcDark">#189e39</color>
+  <color name="green">#23844f</color>
+
+  <color name="mb">#d84315</color>
+  <color name="mbDark">#ac3611</color>
+  <color name="banks">#1bbe44 </color>
+  <color name="banksDark">#189e39</color>
+  <color name="nbu">#f9a825</color>
+  <color name="nbuDark">#f57f17</color>
+  <color name="btc">#408ab7</color>
+  <color name="btcDark">#316889</color>
   <color name="author">#8d29c7</color>
   <color name="authorDark">#671c93</color>
 

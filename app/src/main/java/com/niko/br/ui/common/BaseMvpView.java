@@ -9,6 +9,6 @@ public interface BaseMvpView extends MvpView {
 
   void hideProgressBar();
 
-  void showToast(String msg);
+  void onFailure(Throwable throwable);
 
 }

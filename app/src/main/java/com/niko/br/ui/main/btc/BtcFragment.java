@@ -1,6 +1,10 @@
 package com.niko.br.ui.main.btc;
 
 
+import static com.niko.br.Utils.BTC_KEY;
+import static com.niko.br.Utils.SAVE_FRAGMENT;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,11 +14,15 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.niko.br.R;
 import com.niko.br.di.AppComponent;
 import com.niko.br.ui.common.BaseFragment;
+import javax.inject.Inject;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BtcFragment extends BaseFragment implements BtcView{
+public class BtcFragment extends BaseFragment implements BtcView {
+
+  @Inject
+  SharedPreferences sharedPreferences;
 
   @InjectPresenter
   BtcPresenter btcPresenter;
@@ -37,21 +45,27 @@ public class BtcFragment extends BaseFragment implements BtcView{
 
   @Override
   public void showProgressBar() {
-    getProgressBar().show();
+    progressBar.setVisibility(View.VISIBLE);
   }
 
   @Override
   public void hideProgressBar() {
-    getProgressBar().hide();
+    progressBar.setVisibility(View.INVISIBLE);
   }
 
   @Override
-  public void showToast(String msg) {
-
+  public void onFailure(Throwable throwable) {
+    showToast(throwable.getMessage());
   }
 
   @Override
   public void onBtcLoadSuccess() {
 
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    sharedPreferences.edit().putString(SAVE_FRAGMENT, BTC_KEY).apply();
   }
 }

@@ -8,10 +8,11 @@ import com.niko.br.ui.common.BasePresenter;
 public class BtcPresenter extends BasePresenter<BtcView> {
 
   public BtcPresenter() {
-    loadBtcRate();
+    execute();
   }
 
-  private void loadBtcRate() {
+  @Override
+  public void execute() {
     getViewState().showProgressBar();
     new Handler().postDelayed(() -> {
       getViewState().onBtcLoadSuccess();

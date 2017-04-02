@@ -1,7 +1,7 @@
-package com.niko.br.ui.main.nbu;
+package com.niko.br.ui.main.author;
 
 
-import static com.niko.br.Utils.NBU_KEY;
+import static com.niko.br.Utils.AUTHOR_KEY;
 import static com.niko.br.Utils.SAVE_FRAGMENT;
 
 import android.content.SharedPreferences;
@@ -18,13 +18,12 @@ import javax.inject.Inject;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NbuFragment extends BaseFragment {
-
+public class AuthorFragment extends BaseFragment {
 
   @Inject
   SharedPreferences sharedPreferences;
 
-  public NbuFragment() {
+  public AuthorFragment() {
     // Required empty public constructor
   }
 
@@ -32,7 +31,8 @@ public class NbuFragment extends BaseFragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_nbu, container, false);
+    // Inflate the layout for this fragment
+    return inflater.inflate(R.layout.fragment_author, container, false);
   }
 
   @Override
@@ -43,6 +43,6 @@ public class NbuFragment extends BaseFragment {
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    sharedPreferences.edit().putString(SAVE_FRAGMENT, NBU_KEY).apply();
+    sharedPreferences.edit().putString(SAVE_FRAGMENT, AUTHOR_KEY).apply();
   }
 }
