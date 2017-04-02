@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.niko.br.R;
 import com.niko.br.databinding.FragmentBtcBinding;
 import com.niko.br.di.AppComponent;
 import com.niko.br.models.gson.BTC.BTC;
@@ -44,6 +45,10 @@ public class BtcFragment extends BaseFragment implements BtcView {
       Bundle savedInstanceState) {
     binding = FragmentBtcBinding.inflate(inflater, container, false);
 
+    return binding.getRoot();
+  }
+
+  private void initEditListener() {
     binding.editBTC.addTextChangedListener(new TextWatcher() {
       @Override
       public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -64,8 +69,6 @@ public class BtcFragment extends BaseFragment implements BtcView {
 
       }
     });
-
-    return binding.getRoot();
   }
 
   private void convertBTC(float v) {
@@ -98,12 +101,20 @@ public class BtcFragment extends BaseFragment implements BtcView {
 
   @Override
   public void onFailure(Throwable throwable) {
-    showToast(throwable.getMessage());
+    showToast(getString(R.string.error_internet));
+    binding.lrBTC.setVisibility(View.GONE);
+    binding.contentError.lrError.setVisibility(View.VISIBLE);
+    binding.contentError.refresh.setOnClickListener(view -> {
+      binding.contentError.lrError.setVisibility(View.GONE);
+      btcPresenter.execute();
+    });
   }
 
   @Override
   public void onBtcLoadSuccess(BTC btc) {
     this.btc = btc;
+
+    initEditListener();
 
     UAH uah = btc.getUah();
     RUB rub = btc.getRub();

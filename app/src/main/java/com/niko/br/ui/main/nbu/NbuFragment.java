@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.niko.br.R;
 import com.niko.br.databinding.FragmentNbuBinding;
 import com.niko.br.di.AppComponent;
 import com.niko.br.models.gson.NBU;
@@ -59,12 +60,6 @@ public class NbuFragment extends BaseFragment implements NbuView {
   }
 
   @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    sharedPreferences.edit().putString(SAVE_FRAGMENT, NBU_KEY).apply();
-  }
-
-  @Override
   public void showProgressBar() {
     progressBar.setVisibility(View.VISIBLE);
   }
@@ -76,7 +71,14 @@ public class NbuFragment extends BaseFragment implements NbuView {
 
   @Override
   public void onFailure(Throwable throwable) {
-    showToast(throwable.getMessage());
+    showToast(getString(R.string.error_internet));
+    binding.rlNBU.setVisibility(View.GONE);
+    binding.contentError.lrError.setVisibility(View.VISIBLE);
+    binding.contentError.refresh.setOnClickListener(view -> {
+      binding.contentError.lrError.setVisibility(View.GONE);
+      binding.rlNBU.setVisibility(View.VISIBLE);
+      nbuPresenter.execute();
+    });
   }
 
   @Override
@@ -91,5 +93,11 @@ public class NbuFragment extends BaseFragment implements NbuView {
     nbuAdapter.setNBUList(nbuList);
     binding.recyclerNbu.setAdapter(nbuAdapter);
     binding.btnShowOtherRate.setVisibility(View.GONE);
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    sharedPreferences.edit().putString(SAVE_FRAGMENT, NBU_KEY).apply();
   }
 }

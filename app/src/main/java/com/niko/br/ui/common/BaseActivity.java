@@ -43,4 +43,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
   }
 
+  @BindingAdapter("app:setBoldFont")
+  public static void setBoldFont(TextView textView, boolean b) {
+    if (b) {
+      textView.setTypeface(EasyFonts.robotoBold(textView.getContext()));
+    }
+  }
+
 }

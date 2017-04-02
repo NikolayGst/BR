@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.niko.br.R;
 import com.niko.br.databinding.FragmentBmAndMbBinding;
 import com.niko.br.di.AppComponent;
 import com.niko.br.ui.common.BaseFragment;
@@ -67,7 +68,14 @@ public class BmAndMbFragment extends BaseFragment implements BmAndMbView {
 
   @Override
   public void onFailure(Throwable throwable) {
-    showToast(throwable.getMessage());
+    showToast(getString(R.string.error_internet));
+    binding.recycler.setVisibility(View.GONE);
+    binding.contentError.lrError.setVisibility(View.VISIBLE);
+    binding.contentError.refresh.setOnClickListener(view -> {
+      binding.contentError.lrError.setVisibility(View.GONE);
+      binding.recycler.setVisibility(View.VISIBLE);
+      presenter.execute();
+    });
   }
 
   @Override

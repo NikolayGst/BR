@@ -2,9 +2,18 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools">
 
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+      android:id="@+id/content_error"
+      layout="@layout/error"/>
+
   <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <LinearLayout
       android:id="@+id/lrBTC"
@@ -12,8 +21,7 @@
       android:layout_height="0dp"
       android:visibility="gone"
       android:focusableInTouchMode="true"
-      android:orientation="vertical"
-      tools:context="com.bankrate.Fragments.BTC.View.BTCFragment">
+      android:orientation="vertical">
 
       <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -34,7 +42,7 @@
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/txtBTC"
             android:background="@null"
-            android:maxLength="5"
+            android:maxLength="7"
             android:text="1"
             android:textColor="@android:color/black"
             android:textSize="25sp"
@@ -334,4 +342,5 @@
 
     </LinearLayout>
   </ScrollView>
+  </RelativeLayout>
 </layout>

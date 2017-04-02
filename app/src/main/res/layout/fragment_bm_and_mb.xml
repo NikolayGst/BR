@@ -1,6 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools">
-  <FrameLayout
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.niko.br.ui.main.bmAndMejbank.BmAndMbFragment">
@@ -8,6 +9,11 @@
       android:id="@+id/recycler"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
-  </FrameLayout>
+
+    <include
+      android:id="@+id/content_error"
+      layout="@layout/error"/>
+
+  </RelativeLayout>
 
 </layout>
