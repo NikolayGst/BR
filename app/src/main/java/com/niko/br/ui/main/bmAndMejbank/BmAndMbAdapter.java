@@ -1,7 +1,6 @@
 package com.niko.br.ui.main.bmAndMejbank;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +13,6 @@ import com.niko.br.Utils;
 import com.niko.br.databinding.BmItemBinding;
 import com.niko.br.databinding.TitleItemBinding;
 import com.niko.br.models.gson.BMandMB;
-import com.niko.br.ui.converter.ConverterActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -88,8 +86,8 @@ class BmAndMbAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
           int right = context.getResources().getDimensionPixelSize(R.dimen.small_margin);
           Utils.setMargins(ih.bind.card, left, top, right, bottom);
         }
-        ih.bind.lrItem.setOnClickListener(view ->
-            context.startActivity(new Intent(context, ConverterActivity.class)));
+      /*  ih.bind.lrItem.setOnClickListener(view ->
+            context.startActivity(new Intent(context, ConverterActivity.class)));*/
         break;
     }
   }

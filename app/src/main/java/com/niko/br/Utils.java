@@ -7,9 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.niko.br.models.gson.BMandMB;
+import com.niko.br.models.gson.BTC.ResponseBTC;
+import com.niko.br.models.gson.BTC.BTC;
+import com.niko.br.models.gson.BTC.EUR;
+import com.niko.br.models.gson.BTC.RUB;
+import com.niko.br.models.gson.BTC.UAH;
+import com.niko.br.models.gson.BTC.USD;
+import com.niko.br.models.gson.NBU;
 import com.vstechlab.easyfonts.EasyFonts;
 import java.util.ArrayList;
 import java.util.List;
+import retrofit2.Response;
 
 
 public class Utils {
@@ -42,11 +50,11 @@ public class Utils {
 
   public static List<Object> formatBmAndMb(List<BMandMB> bmList, List<BMandMB> mejBanks) {
     List<Object> list = new ArrayList<>();
-    list.add("Черный рынок");
+    list.add("Чорний ринок");
     for (BMandMB b : bmList) {
       list.add(b);
     }
-    list.add("Межбанк");
+    list.add("Міжбанк");
     for (BMandMB mb : mejBanks) {
       list.add(mb);
     }
@@ -63,5 +71,40 @@ public class Utils {
 
   public static void setPadding(View view, int left, int top, int right, int bottom) {
     view.setPadding(left, top, right, bottom);
+  }
+
+  public static BTC formatBTC(Response<ResponseBTC> usdAndEurResponse,
+      Response<ResponseBTC> uahResponse,
+      Response<ResponseBTC> rubResponse) {
+
+    USD usd = usdAndEurResponse.body().getBpi().getUSD();
+    EUR eur = usdAndEurResponse.body().getBpi().getEUR();
+    UAH uah = uahResponse.body().getBpi().getUAH();
+    RUB rub = rubResponse.body().getBpi().getRUB();
+
+    return new BTC(usd, eur, uah, rub);
+  }
+
+  public static List<NBU> formatSmallNBUList(List<NBU> nbuList) {
+    List<NBU> list = new ArrayList<>();
+    for (NBU nbu : nbuList) {
+      if (nbu.getCc().equals("USD")) list.add(nbu);
+      if (nbu.getCc().equals("EUR")) list.add(nbu);
+      if (nbu.getCc().equals("RUB")) list.add(nbu);
+    }
+    return list;
+  }
+
+  public static List<NBU> formatFullNBUList(List<NBU> nbuList) {
+    List<NBU> list = new ArrayList<>();
+    for (NBU nbu : nbuList) {
+      if (nbu.getCc().equals("USD")) list.add(0,nbu);
+      if (nbu.getCc().equals("EUR")) list.add(1,nbu);
+      if (nbu.getCc().equals("RUB")) list.add(2,nbu);
+      if (!nbu.getCc().equals("USD") && !nbu.getCc().equals("EUR") && !nbu.getCc().equals("RUB")) {
+        list.add(nbu);
+      }
+    }
+    return list;
   }
 }

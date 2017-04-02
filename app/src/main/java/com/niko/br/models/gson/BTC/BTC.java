@@ -1,73 +1,36 @@
-
 package com.niko.br.models.gson.BTC;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 public class BTC {
 
-    @SerializedName("time")
-    @Expose
-    private Time time;
-    @SerializedName("disclaimer")
-    @Expose
-    private String disclaimer;
-    @SerializedName("bpi")
-    @Expose
-    private Bpi bpi;
+  private USD usd;
 
-    /**
-     * 
-     * @return
-     *     The time
-     */
-    public Time getTime() {
-        return time;
-    }
+  private EUR eur;
 
-    /**
-     * 
-     * @param time
-     *     The time
-     */
-    public void setTime(Time time) {
-        this.time = time;
-    }
+  private UAH uah;
 
-    /**
-     * 
-     * @return
-     *     The disclaimer
-     */
-    public String getDisclaimer() {
-        return disclaimer;
-    }
+  private RUB rub;
 
-    /**
-     * 
-     * @param disclaimer
-     *     The disclaimer
-     */
-    public void setDisclaimer(String disclaimer) {
-        this.disclaimer = disclaimer;
-    }
+  public BTC(USD usd, EUR eur, UAH uah, RUB rub) {
+    this.usd = usd;
+    this.eur = eur;
+    this.uah = uah;
+    this.rub = rub;
+  }
 
-    /**
-     * 
-     * @return
-     *     The bpi
-     */
-    public Bpi getBpi() {
-        return bpi;
-    }
+  public USD getUsd() {
+    return usd;
+  }
 
-    /**
-     * 
-     * @param bpi
-     *     The bpi
-     */
-    public void setBpi(Bpi bpi) {
-        this.bpi = bpi;
-    }
+  public EUR getEur() {
+    return eur;
+  }
 
+  public UAH getUah() {
+    return uah;
+  }
+
+  public RUB getRub() {
+    return rub;
+  }
 }

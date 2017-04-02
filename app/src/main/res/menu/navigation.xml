@@ -21,13 +21,13 @@
 
   <item
     android:id="@+id/btc"
-    android:title="Биткоин"
+    android:title="Біткоін"
     android:icon="@mipmap/btc"
     />
 
   <item
     android:id="@+id/author"
-    android:title="Об авторе"
+    android:title="Про автора"
     android:icon="@drawable/ic_author"
     />
 

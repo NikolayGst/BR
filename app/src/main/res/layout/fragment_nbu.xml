@@ -1,14 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context="com.niko.br.ui.main.nbu.NbuFragment">
-
-  <TextView
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+  <RelativeLayout
+    android:id="@+id/rlNBU"
     android:layout_width="match_parent"
-    android:gravity="center"
-    android:text="НБУ"
-    android:textSize="30sp"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:context="com.niko.br.ui.main.nbu.NbuFragment">
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/recyclerNbu"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+    <TextView
+      android:id="@+id/btnShowOtherRate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:layout_below="@id/recyclerNbu"
+      android:gravity="center"
+      android:text="Показати інші 67 валют"
+
+      android:textColor="@color/colorAccent"
+      android:textSize="20sp"
+      app:setFont="@{true}"/>
+
+  </RelativeLayout>
+</layout>

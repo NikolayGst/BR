@@ -1,7 +1,7 @@
 package com.niko.br.models.network;
 
 import com.niko.br.models.gson.BMandMB;
-import com.niko.br.models.gson.BTC.BTC;
+import com.niko.br.models.gson.BTC.ResponseBTC;
 import com.niko.br.models.gson.NBU;
 import java.util.List;
 import retrofit2.Response;
@@ -20,11 +20,11 @@ public interface API {
   Observable<Response<List<NBU>>> getNBUBank(@Url String url);
 
   @GET
-  Observable<Response<BTC>> getBTCCurrentRate(@Url String url);
+  Observable<Response<ResponseBTC>> getBTCCurrentRate(@Url String url);
 
   @GET
-  Observable<Response<BTC>> getBTCUah(@Url String url);
+  Observable<Response<ResponseBTC>> getBTCUah(@Url String url);
 
   @GET
-  Observable<Response<BTC>> getBTCRub(@Url String url);
+  Observable<Response<ResponseBTC>> getBTCRub(@Url String url);
 }

@@ -12,7 +12,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 import com.niko.br.R;
@@ -143,9 +142,4 @@ public class MainActivity extends BaseActivity {
             new Fragments(R.color.author, R.color.authorDark, R.id.author, authorFragment));
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.main, menu);
-    return true;
-  }
 }

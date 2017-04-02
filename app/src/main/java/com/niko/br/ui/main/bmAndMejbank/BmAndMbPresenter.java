@@ -4,8 +4,8 @@ import static com.niko.br.Utils.BLACK_MARKET;
 import static com.niko.br.Utils.MEJBANK;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.niko.br.App;
 import com.niko.br.Utils;
+import com.niko.br.di.AppComponent;
 import com.niko.br.models.network.API;
 import com.niko.br.ui.common.BasePresenter;
 import javax.inject.Inject;
@@ -20,8 +20,12 @@ public class BmAndMbPresenter extends BasePresenter<BmAndMbView> {
   API api;
 
   BmAndMbPresenter() {
-    App.getAppComponent().inject(this);
     execute();
+  }
+
+  @Override
+  public void injectPresenter(AppComponent component) {
+    component.inject(this);
   }
 
   @Override

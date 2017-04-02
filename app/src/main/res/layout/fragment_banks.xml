@@ -7,7 +7,7 @@
   <TextView
     android:layout_width="match_parent"
     android:gravity="center"
-    android:text="Банки"
+    android:text="В разработке"
     android:textSize="30sp"
     android:layout_height="match_parent"/>
 
