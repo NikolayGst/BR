@@ -6,8 +6,6 @@ import static com.niko.br.Utils.SAVE_FRAGMENT;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +19,7 @@ import com.niko.br.models.gson.BTC.RUB;
 import com.niko.br.models.gson.BTC.UAH;
 import com.niko.br.models.gson.BTC.USD;
 import com.niko.br.ui.common.BaseFragment;
+import com.niko.br.ui.common.SimpleTextWatcher;
 import java.util.Locale;
 import javax.inject.Inject;
 
@@ -49,12 +48,7 @@ public class BtcFragment extends BaseFragment implements BtcView {
   }
 
   private void initEditListener() {
-    binding.editBTC.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-      }
-
+    binding.editBTC.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         if (charSequence.length() == 0) {
@@ -62,11 +56,6 @@ public class BtcFragment extends BaseFragment implements BtcView {
         } else {
           convertBTC(Float.parseFloat(charSequence.toString()));
         }
-      }
-
-      @Override
-      public void afterTextChanged(Editable editable) {
-
       }
     });
   }

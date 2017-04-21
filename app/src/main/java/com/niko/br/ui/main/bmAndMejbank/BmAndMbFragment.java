@@ -2,6 +2,9 @@ package com.niko.br.ui.main.bmAndMejbank;
 
 
 import static com.niko.br.Utils.BM_AND_MB_KEY;
+import static com.niko.br.Utils.BM_LIST_MAP;
+import static com.niko.br.Utils.FULL_MAP;
+import static com.niko.br.Utils.MEJ_BANKS_MAP;
 import static com.niko.br.Utils.SAVE_FRAGMENT;
 
 import android.content.SharedPreferences;
@@ -14,8 +17,10 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.niko.br.R;
 import com.niko.br.databinding.FragmentBmAndMbBinding;
 import com.niko.br.di.AppComponent;
+import com.niko.br.models.gson.CashexRate;
 import com.niko.br.ui.common.BaseFragment;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
 
 
@@ -79,8 +84,12 @@ public class BmAndMbFragment extends BaseFragment implements BmAndMbView {
   }
 
   @Override
-  public void onSuccessLoadBmANdMb(List<Object> list) {
-    adapter.addItems(list);
+  @SuppressWarnings("unchecked")
+  public void onSuccessLoadBmANdMb(Map<String, Object> map) {
+    List<Object> list = (List<Object>) map.get(FULL_MAP);
+    List<CashexRate> bmList = (List<CashexRate>) map.get(BM_LIST_MAP);
+    List<CashexRate> mejBanks = (List<CashexRate>) map.get(MEJ_BANKS_MAP);
+    adapter.addItems(list, bmList, mejBanks);
     binding.recycler.setAdapter(adapter);
   }
 

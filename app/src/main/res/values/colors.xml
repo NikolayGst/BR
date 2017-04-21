@@ -10,9 +10,16 @@
   <color name="selected_text_tab">#dcdcdc</color>
   <color name="unselected_text_tab">#ffffff</color>
   <color name="bg">#BDBDBD</color>
-  <color name="grey">#ededed</color>
+  <color name="grey">#ededed</color>'
+
+  <color name="bg_btns">#ab212121</color>
+
+
 
   <color name="green">#23844f</color>
+
+  <color name="converter">#009688</color>
+  <color name="converterDark">#00796B</color>
 
   <color name="mb">#d84315</color>
   <color name="mbDark">#ac3611</color>

@@ -3,6 +3,7 @@ package com.niko.br.di;
 import com.niko.br.ui.main.MainActivity;
 import com.niko.br.ui.main.author.AuthorFragment;
 import com.niko.br.ui.main.banks.BanksFragment;
+import com.niko.br.ui.main.banks.BanksPresenter;
 import com.niko.br.ui.main.bmAndMejbank.BmAndMbFragment;
 import com.niko.br.ui.main.bmAndMejbank.BmAndMbPresenter;
 import com.niko.br.ui.main.btc.BtcFragment;
@@ -36,4 +37,5 @@ public interface AppComponent {
 
   void inject(NbuPresenter nbuPresenter);
 
+  void inject(BanksPresenter banksPresenter);
 }

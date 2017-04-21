@@ -1,6 +1,9 @@
 package com.niko.br.ui.main.bmAndMejbank;
 
+import static com.niko.br.Utils.getFlag;
+
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -8,11 +11,14 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import com.niko.br.R;
 import com.niko.br.Utils;
 import com.niko.br.databinding.BmItemBinding;
 import com.niko.br.databinding.TitleItemBinding;
-import com.niko.br.models.gson.BMandMB;
+import com.niko.br.models.gson.CashexRate;
+import com.niko.br.ui.converter.ConverterActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -22,12 +28,8 @@ class BmAndMbAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
   private final int green;
   private Context context;
 
-  private double sum;
-
-  public void setSum(double sum) {
-    this.sum = sum;
-    notifyDataSetChanged();
-  }
+  List<CashexRate> bmList;
+  List<CashexRate> mejBanks;
 
   private List<Object> list;
 
@@ -39,7 +41,9 @@ class BmAndMbAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   private final int TITLE = 0, ITEM = 1;
 
-  void addItems(List<Object> list) {
+  void addItems(List<Object> list, List<CashexRate> bmList, List<CashexRate> mejBanks) {
+    this.bmList = bmList;
+    this.mejBanks = mejBanks;
     this.list.addAll(list);
     notifyDataSetChanged();
   }
@@ -70,7 +74,7 @@ class BmAndMbAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         break;
       case ITEM:
         ItemHolder ih = (ItemHolder) holder;
-        BMandMB item = (BMandMB) list.get(position);
+        CashexRate item = (CashexRate) list.get(position);
         changeColor(item, ih);
         ih.bind.flag.setImageResource(getFlag(item.getCurrency()));
         ih.bind.txtCurrency.setText(item.getCurrency());
@@ -86,13 +90,73 @@ class BmAndMbAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
           int right = context.getResources().getDimensionPixelSize(R.dimen.small_margin);
           Utils.setMargins(ih.bind.card, left, top, right, bottom);
         }
-      /*  ih.bind.lrItem.setOnClickListener(view ->
-            context.startActivity(new Intent(context, ConverterActivity.class)));*/
+        ih.bind.lrItem.setOnClickListener(view ->
+        {
+          if (ih.bind.btnsRate.getVisibility() == View.GONE) {
+
+            Animation in = AnimationUtils.loadAnimation(context,
+                android.R.anim.fade_in);
+            ih.bind.btnsRate.startAnimation(in);
+            ih.bind.btnsRate.setVisibility(View.VISIBLE);
+
+            ih.bind.buy.setOnClickListener(v -> {
+              Intent intent = new Intent(context, ConverterActivity.class);
+              intent.putExtra("mainRate", item.getCurrency());
+              intent.putExtra("buyRate", item);
+              intent.putExtra("isBuy", true);
+              if (item.isBM()) {
+                intent.putExtra("title", "ЧР");
+              } else {
+                intent.putExtra("title", "МБ");
+              }
+              context.startActivity(intent);
+            });
+
+            ih.bind.sale.setOnClickListener(v -> {
+              Intent intent = new Intent(context, ConverterActivity.class);
+              intent.putExtra("mainRate", item.getCurrency());
+              intent.putExtra("isBuy", false);
+              if (item.isBM()) {
+                intent.putExtra("title", "ЧР");
+                intent.putExtra("usd", bmList.get(0));
+                intent.putExtra("eur", bmList.get(1));
+                intent.putExtra("rub", bmList.get(2));
+              } else {
+                intent.putExtra("title", "МБ");
+                intent.putExtra("usd", mejBanks.get(0));
+                intent.putExtra("eur", mejBanks.get(1));
+                intent.putExtra("rub", mejBanks.get(2));
+              }
+              context.startActivity(intent);
+            });
+
+          } else {
+            Animation out = AnimationUtils.loadAnimation(context,
+                android.R.anim.fade_out);
+            ih.bind.btnsRate.startAnimation(out);
+            ih.bind.btnsRate.setVisibility(View.GONE);
+          }
+         /* Intent intent = new Intent(context, ConverterActivity.class);
+          intent.putExtra("mainRate", item.getCurrency());
+          if (item.isBM()) {
+            intent.putExtra("title", "ЧР");
+            intent.putExtra("usd", bmList.get(0));
+            intent.putExtra("eur", bmList.get(1));
+            intent.putExtra("rub", bmList.get(2));
+          } else {
+            intent.putExtra("title", "МБ");
+            intent.putExtra("usd", mejBanks.get(0));
+            intent.putExtra("eur", mejBanks.get(1));
+            intent.putExtra("rub", mejBanks.get(2));
+          }
+          context.startActivity(intent);*/
+        });
+        //  context.startActivity(new Intent(context, ConverterActivity.class)));
         break;
     }
   }
 
-  private void changeColor(BMandMB item, ItemHolder holder) {
+  private void changeColor(CashexRate item, ItemHolder holder) {
     if (item.getBuyDelta() > 0 && !Float.toString(item.getBuyDelta()).equals("0.0")) {
       holder.bind.txtBuyDelta.setTextColor(green);
     } else if (item.getBuyDelta() < 0 && !Float.toString(item.getBuyDelta()).equals("0.0")) {
@@ -108,18 +172,6 @@ class BmAndMbAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     } else {
       holder.bind.txtSaleDelta.setTextColor(Color.BLACK);
     }
-  }
-
-  private int getFlag(String currency) {
-    switch (currency) {
-      case "USD":
-        return R.drawable.usa;
-      case "EUR":
-        return R.drawable.eur;
-      case "RUB":
-        return R.drawable.ru;
-    }
-    return 0;
   }
 
   private class ItemHolder extends ViewHolder {

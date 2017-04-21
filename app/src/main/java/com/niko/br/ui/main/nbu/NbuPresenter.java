@@ -34,7 +34,7 @@ public class NbuPresenter extends BasePresenter<NbuView> {
   @Override
   public void execute() {
     getViewState().showProgressBar();
-    api.getNBUBank(NBU_URL)
+    unsubscribeOnDestroy(api.getNBUBank(NBU_URL)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
         .map(listResponse -> {
@@ -51,7 +51,7 @@ public class NbuPresenter extends BasePresenter<NbuView> {
         }, error -> {
           getViewState().hideProgressBar();
           getViewState().onFailure(error);
-        });
+        }));
   }
 
   void showOtherRate() {

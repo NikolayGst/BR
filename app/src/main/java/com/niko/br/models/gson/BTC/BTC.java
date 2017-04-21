@@ -4,11 +4,8 @@ package com.niko.br.models.gson.BTC;
 public class BTC {
 
   private USD usd;
-
   private EUR eur;
-
   private UAH uah;
-
   private RUB rub;
 
   public BTC(USD usd, EUR eur, UAH uah, RUB rub) {

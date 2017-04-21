@@ -33,7 +33,8 @@ public class BtcPresenter extends BasePresenter<BtcView> {
   public void execute() {
     getViewState().showProgressBar();
 
-    Observable.combineLatest(api.getBTCCurrentRate(BTC_RATE), api.getBTCUah(BTC_UAH),
+    unsubscribeOnDestroy(
+        Observable.combineLatest(api.getBTCCurrentRate(BTC_RATE), api.getBTCUah(BTC_UAH),
         api.getBTCRub(BTC_RUB), (usdAndEurResponse, uahResponse, rubResponse) -> {
           {
             if (usdAndEurResponse.isSuccessful() && uahResponse.isSuccessful() && rubResponse
@@ -53,7 +54,7 @@ public class BtcPresenter extends BasePresenter<BtcView> {
         }, error -> {
           getViewState().onFailure(error);
           getViewState().hideProgressBar();
-        });
+        }));
 
   }
 

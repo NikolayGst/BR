@@ -76,7 +76,6 @@ public class NbuFragment extends BaseFragment implements NbuView {
     binding.contentError.lrError.setVisibility(View.VISIBLE);
     binding.contentError.refresh.setOnClickListener(view -> {
       binding.contentError.lrError.setVisibility(View.GONE);
-      binding.rlNBU.setVisibility(View.VISIBLE);
       nbuPresenter.execute();
     });
   }

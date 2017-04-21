@@ -7,20 +7,24 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
-      android:id="@+id/appbar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:theme="@style/AppBarTheme">
-
       <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
         app:popupTheme="@style/PopupTheme">
-
+        <TextView
+          android:id="@+id/titleToolbar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@android:color/white"
+          android:textSize="20sp"
+          app:setFontRobotoLight="@{true}"/>
       </android.support.v7.widget.Toolbar>
-
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.CardView
@@ -46,7 +50,7 @@
           android:fontFamily="sans-serif-light"
           android:inputType="numberDecimal"
           android:maxLength="7"
-          android:text="0"
+          android:text="1"
           android:textColor="@android:color/black"
           android:textSize="25sp"/>
 
@@ -56,6 +60,7 @@
           android:layout_height="wrap_content"
           android:layout_marginEnd="8dp"
           android:layout_marginRight="8dp"
+          android:padding="8dp"
           android:gravity="center_vertical"
           android:text="UAH"
           android:textColor="@android:color/black"
@@ -65,6 +70,60 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+      android:id="@+id/cardBuy"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:visibility="gone">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="8dp"
+          android:orientation="horizontal">
+
+          <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="8dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ua"/>
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+          <TextView
+            android:id="@+id/txtBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+        </RelativeLayout>
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:id="@+id/cardSale"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
@@ -74,8 +133,6 @@
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
         android:orientation="vertical">
 
         <RelativeLayout
