@@ -4,13 +4,15 @@ package com.niko.br.ui.main.author;
 import static com.niko.br.Utils.AUTHOR_KEY;
 import static com.niko.br.Utils.SAVE_FRAGMENT;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.niko.br.databinding.FragmentAuthorBinding;
 import com.niko.br.di.AppComponent;
 import com.niko.br.ui.common.BaseFragment;
@@ -35,9 +37,25 @@ public class AuthorFragment extends BaseFragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentAuthorBinding.inflate(inflater, container, false);
-    binding.haha
-        .setOnClickListener(view -> Toast.makeText(getContext(), "Ты дурак :D", Toast.LENGTH_SHORT)
-            .show());
+
+    binding.vk.setOnClickListener(view -> {
+      try {
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+            Uri.parse("vkontakte://profile/nikodroid"));
+        startActivity(intent);
+      } catch (ActivityNotFoundException ex) {
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+            Uri.parse("https://vk.com/nikodroid"));
+        startActivity(intent);
+      }
+    });
+
+    binding.git.setOnClickListener(view -> {
+      Intent intent = new Intent(Intent.ACTION_VIEW,
+          Uri.parse("https://github.com/NikolayGst"));
+      startActivity(intent);
+    });
+
     return binding.getRoot();
   }
 
