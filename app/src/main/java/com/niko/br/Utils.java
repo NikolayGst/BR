@@ -158,22 +158,6 @@ public class Utils {
     return bankList;
   }
 
-  public static int getImageBank(int id) {
-    switch (id){
-      case 0:
-        return R.drawable.aval;
-      case 1:
-        return R.drawable.ukrsibbank;
-      case 2:
-        return R.drawable.alfa_bank;
-      case 3:
-        return R.drawable.privatbank;
-      case 4:
-        return R.drawable.sberbank;
-    }
-    return -1;
-  }
-
   public static int getFlag(String currency) {
     switch (currency) {
       case "USD":
@@ -189,16 +173,26 @@ public class Utils {
   public static List<BankTitle> formatBanks(List<CashexRate> t1, List<CashexRate> t2,
       List<CashexRate> t3, List<CashexRate> t4, List<CashexRate> t5) {
     List<BankTitle> list = new ArrayList<>();
-    t1.remove(t1.size() - 1);
-    t1.remove(t1.size() - 1);
-    list.add(new BankTitle("Райффайзен Банк Аваль", t1));
-    t2.remove(t2.size() - 1);
-    t2.remove(t2.size() - 1);
-    list.add(new BankTitle("УкрСиббанк", t2));
-    list.add(new BankTitle("Альфа-Банк", t3));
-    list.add(new BankTitle("ПриватБанк", t4));
-    t5.remove(t5.size() - 1);
-    list.add(new BankTitle("Сбербанк Росії", t5));
+    if (t1.size() != 0) {
+      t1.remove(t1.size() - 1);
+      t1.remove(t1.size() - 1);
+      list.add(new BankTitle("Райффайзен Банк Аваль", t1, R.drawable.aval));
+    }
+    if (t2.size() != 0) {
+      t2.remove(t2.size() - 1);
+      t2.remove(t2.size() - 1);
+      list.add(new BankTitle("УкрСиббанк", t2, R.drawable.ukrsibbank));
+    }
+    if (t3.size() != 0) {
+      list.add(new BankTitle("Альфа-Банк", t3, R.drawable.alfa_bank));
+    }
+    if (t4.size() != 0) {
+      list.add(new BankTitle("ПриватБанк", t4, R.drawable.privatbank));
+    }
+    if (t5.size() != 0) {
+      t5.remove(t5.size() - 1);
+      list.add(new BankTitle("Сбербанк Росії", t5, R.drawable.sberbank));
+    }
     return list;
 
   }

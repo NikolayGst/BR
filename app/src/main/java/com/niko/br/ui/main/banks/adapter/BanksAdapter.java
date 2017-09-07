@@ -14,32 +14,11 @@ import com.niko.br.models.gson.CashexRate;
 import com.niko.br.ui.converter.ConverterActivity;
 import java.util.List;
 
-/**
- * Created by Николай on 19.04.2017.
- */
-
 public class BanksAdapter extends
     ExpandableRecyclerAdapter<BankTitle, CashexRate, TitleBankHolder, RateHolder> {
 
 
   private Context context;
-
-  /**
-   * Primary constructor. Sets up {@link #mParentList} and {@link #mFlatItemList}.
-   * <p>
-   * Any changes to {@link #mParentList} should be made on the original instance, and notified via
-   * {@link #notifyParentInserted(int)}
-   * {@link #notifyParentRemoved(int)}
-   * {@link #notifyParentChanged(int)}
-   * {@link #notifyParentRangeInserted(int, int)}
-   * {@link #notifyChildInserted(int, int)}
-   * {@link #notifyChildRemoved(int, int)}
-   * {@link #notifyChildChanged(int, int)}
-   * methods and not the notify methods of RecyclerView.Adapter.
-   *
-   * @param parentList List of all parents to be displayed in the RecyclerView that this adapter is
-   * linked to
-   */
   public BanksAdapter(
       @NonNull List<BankTitle> parentList, Context context) {
     super(parentList);
@@ -64,7 +43,7 @@ public class BanksAdapter extends
   @Override
   public void onBindParentViewHolder(@NonNull TitleBankHolder parentViewHolder, int parentPosition,
       @NonNull BankTitle parent) {
-    parentViewHolder.bindData(parent, parentPosition);
+    parentViewHolder.bindData(parent);
   }
 
   @Override

@@ -48,6 +48,7 @@ public class BtcFragment extends BaseFragment implements BtcView {
   }
 
   private void initEditListener() {
+    binding.editBTC.setSelection(binding.editBTC.getText().toString().length());
     binding.editBTC.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {

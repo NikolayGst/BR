@@ -15,9 +15,9 @@ public class TitleBankHolder extends ParentViewHolder {
     bind = TitleBankItemBinding.bind(itemView);
   }
 
-  public void bindData(BankTitle parent, int pos){
+  public void bindData(BankTitle parent) {
     bind.titleBank.setText(parent.getTitle());
-    bind.logoBank.setImageResource(Utils.getImageBank(pos));
+    bind.logoBank.setImageResource(parent.getResId());
   }
 
 }

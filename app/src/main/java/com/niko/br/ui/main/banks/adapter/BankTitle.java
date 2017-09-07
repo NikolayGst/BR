@@ -8,10 +8,12 @@ public class BankTitle implements Parent<CashexRate> {
 
   private String title;
   private List<CashexRate> list;
+  private int resId;
 
-  public BankTitle(String title, List<CashexRate> list) {
+  public BankTitle(String title, List<CashexRate> list, int resId) {
     this.title = title;
     this.list = list;
+    this.resId = resId;
   }
 
   @Override
@@ -28,4 +30,7 @@ public class BankTitle implements Parent<CashexRate> {
     return title;
   }
 
+  public int getResId() {
+    return resId;
+  }
 }

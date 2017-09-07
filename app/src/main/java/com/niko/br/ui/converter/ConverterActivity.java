@@ -83,6 +83,7 @@ public class ConverterActivity extends BaseActivity {
   }
 
   private void initEditListener() {
+    binding.editCount.setSelection(binding.editCount.getText().toString().length());
     binding.editCount.addTextChangedListener(new TextWatcher() {
       @Override
       public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
