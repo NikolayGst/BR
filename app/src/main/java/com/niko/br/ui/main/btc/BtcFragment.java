@@ -44,10 +44,12 @@ public class BtcFragment extends BaseFragment implements BtcView {
       Bundle savedInstanceState) {
     binding = FragmentBtcBinding.inflate(inflater, container, false);
 
+
     return binding.getRoot();
   }
 
   private void initEditListener() {
+    binding.editBTC.setText("1");
     binding.editBTC.setSelection(binding.editBTC.getText().toString().length());
     binding.editBTC.addTextChangedListener(new SimpleTextWatcher() {
       @Override
